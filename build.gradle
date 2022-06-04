@@ -23,9 +23,10 @@ plugins {
 publishing {
     publications {
         gpr(MavenPublication) {
-            groupId = 'org.odkxtest'
+            groupId = 'org.odk-x'
             artifactId = 'androidlibrary'
             version = "$version"
+            
             from(components.java)
         }
     }
@@ -50,16 +51,16 @@ allprojects {
     apply plugin: "com.palantir.git-version"
 
     def details = versionDetails()
-    //version(details.branchName + "_" + details.gitHash)
-    version = gitVersion()
+    version(details.branchName + "_" + details.gitHash)
+    //version = gitVersion()
     
     println "version=$version"
-    println "lastTag=details.lastTag"
-    println "commitDistance=details.commitDistance"
-    println "gitHash=details.gitHash"
-    println "gitHashFull=details.gitHashFull" // full 40-character Git commit hash
-    println "branchName=details.branchName" // is null if the repository in detached HEAD mode
-    println "isCleanTag=details.isCleanTag"
+    println "lastTag=$details.lastTag"
+    println "commitDistance=$details.commitDistance"
+    println "gitHash=$details.gitHash"
+    println "gitHashFull=$details.gitHashFull" // full 40-character Git commit hash
+    println "branchName=$details.branchName" // is null if the repository in detached HEAD mode
+    println "isCleanTag=$details.isCleanTag"
 }
 
 configurations.all {
