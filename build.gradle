@@ -15,6 +15,7 @@ buildscript {
 plugins {
     id("maven-publish")
     id("java")
+    id("com.jfrog.artifactory")
 }
 
 
