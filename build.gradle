@@ -21,8 +21,8 @@ plugins {
 publishing {
     publications {
         gpr(MavenPublication) {
-            groupId = 'org.odk-x'
-            artifactId = 'androidlibrary'
+            groupId = 'org.opendatakit' //'org.odk-x'
+            artifactId = 'masterBasicAndroidlibrary' //'androidlibrary'
             version = gitVersion()
             
             from(components.java)
