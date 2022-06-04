@@ -16,7 +16,7 @@ buildscript {
 plugins {
     id("maven-publish")
     id("java")
-    id(""com.palantir.git-version")
+    id("com.palantir.git-version")
 }
 
 
