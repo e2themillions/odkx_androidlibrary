@@ -18,8 +18,8 @@ plugins {
 
 publishing {
     publications {
-        maven(MavenPublication) {
-            from components.java
+        gpr(MavenPublication) {
+            from(components.java)
         }
     }
     repositories {
