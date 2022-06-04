@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.2'
         classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.23.4'
+        classpath "gradle.plugin.com.palantir.gradle.gitversion:gradle-git-version:0.15.0"
     }
 }
 
@@ -45,6 +46,12 @@ allprojects {
         google()
         mavenCentral()
     }
+    
+    apply plugin: "com.palantir.git-version"
+
+    def details = versionDetails()
+    version(details.branchName + "_" + details.gitHash)
+    println "version=$version"
 }
 
 configurations.all {
