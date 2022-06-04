@@ -14,9 +14,10 @@ buildscript {
 plugins {
     id("maven-publish")
     id("java")
+    id("com.android.library")
 }
 
-compileSdkVersion(compileVersion)
+
 
 publishing {
     publications {
