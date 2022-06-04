@@ -16,6 +16,7 @@ buildscript {
 plugins {
     id("maven-publish")
     id("java")
+    id(""com.palantir.git-version")
 }
 
 
@@ -25,7 +26,7 @@ publishing {
         gpr(MavenPublication) {
             groupId = 'org.odkxtest'
             artifactId = 'androidlibrary'
-            version = "0.9-SNAPSHOT"
+            version = "$version"
             from(components.java)
         }
     }
