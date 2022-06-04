@@ -53,8 +53,6 @@ allprojects {
     //version(details.branchName + "_" + details.gitHash)
     version = gitVersion()
     
-    printVersion()
-    
     println "version=$version"
     println "lastTag=details.lastTag"
     println "commitDistance=details.commitDistance"
