@@ -7,7 +7,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.2'
-        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.23.4'
     }
 }
 
@@ -15,7 +14,13 @@ buildscript {
 plugins {
     id("maven-publish")
 }
+
 publishing {
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
     repositories {
         maven {
             name = "GitHubPackages"
@@ -25,46 +30,17 @@ publishing {
                 password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
             }
         }
-    }
-    publications {
-        gpr(MavenPublication) {
-            from(components.java)
-        }
-    }
+    }   
 }
-
 
 allprojects {
     repositories {
         google()
         mavenCentral()
+        maven()
     }
 }
 
 configurations.all {
     transitive = true
-}
-
-apply plugin: "com.jfrog.artifactory"
-
-artifactoryPublish.skip=true
-
-artifactory {
-
-    publish {
-        contextUrl = 'http://cwe.cs.washington.edu:8082/artifactory'
-        //A closure defining publishing information
-        defaults {
-            //List of Gradle Publications (names or objects) from which to collect the list of artifacts to be deployed to Artifactory.
-            publishConfigs('default')
-            publishBuildInfo = true   //Publish build-info to Artifactory (true by default)
-            publishArtifacts = true   //Publish artifacts to Artifactory (true by default)
-            publishPom = false   //Publish generated POM files to Artifactory (true by default).
-            publishIvy = true   //Publish generated Ivy descriptor files to Artifactory (true by default).
-        }
-    }
-    // Redefine basic properties of the build info object
-    clientConfig.setIncludeEnvVars(true)
-    clientConfig.setEnvVarsExcludePatterns('*password*,*secret*')
-    clientConfig.setEnvVarsIncludePatterns('*not-secret*')
 }
