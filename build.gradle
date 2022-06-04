@@ -16,6 +16,8 @@ plugins {
     id("java")
 }
 
+compileSdkVersion(compileVersion)
+
 publishing {
     publications {
         gpr(MavenPublication) {
