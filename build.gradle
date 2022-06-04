@@ -15,17 +15,15 @@ buildscript {
 plugins {
     id 'maven-publish'
     id 'java'
-    id "com.palantir.git-version" version "0.12.3"
+    id "com.palantir.git-version" version "0.12.3" // Use old version due to java compatibility issues with v.0.15.0
 }
-
-
 
 publishing {
     publications {
         gpr(MavenPublication) {
             groupId = 'org.odk-x'
             artifactId = 'androidlibrary'
-            version = "$version"
+            version = gitVersion()
             
             from(components.java)
         }
@@ -51,7 +49,7 @@ allprojects {
     apply plugin: "com.palantir.git-version"
 
     def details = versionDetails()
-    version(details.branchName + "_" + details.gitHash)
+    
     //version = gitVersion()
     
     println "version=$version"
