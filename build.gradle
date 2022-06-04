@@ -22,7 +22,7 @@ publishing {
     publications {
         gpr(MavenPublication) {
             groupId = 'org.opendatakit' //'org.odk-x'
-            artifactId = 'masterBasicAndroidlibrary' //'androidlibrary'
+            artifactId = 'masterbasicandroidlibrary' //'androidlibrary'
             version = gitVersion()
             
             from(components.java)
